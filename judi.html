@@ -64,30 +64,32 @@ let no = document.getElementById("no");
 let yes = document.getElementById("yes");
 let emoji = document.getElementById("emoji");
 
-// 🎵 الصوت
-let song = new Audio("song.mp3");
-song.preload = "auto";
+let clicks = 0;
 
-// 🔥 زر عشوائي
+// 🔥 كل ضغطة = حركة واحدة، وبعد 6 مرات يختفي
 idk.addEventListener("click", () => {
-    let x = Math.random() * (window.innerWidth - 120);
-    let y = Math.random() * (window.innerHeight - 120);
 
-    idk.style.left = x + "px";
-    idk.style.top = y + "px";
+    if (clicks < 6) {
+        let x = Math.random() * (window.innerWidth - 120);
+        let y = Math.random() * (window.innerHeight - 120);
+
+        idk.style.left = x + "px";
+        idk.style.top = y + "px";
+
+        clicks++;
+    } else {
+        idk.style.display = "none";
+    }
 });
 
-// 😡 زر لا
+// 😳 زر لا
 no.addEventListener("click", () => {
-    emoji.textContent = "😡";
-    alert("يرجى إعادة الاختيار 😤");
+    emoji.textContent = "😳";
+    alert("انتي مصممة بقا 🤨\nيرجي إعادة الاختيار");
 });
 
 // ❤️ زر أيوه
 yes.addEventListener("click", () => {
-    song.currentTime = 0;
-    song.play();
-
     document.body.innerHTML = `
         <div style="text-align:center;color:white;">
             <h1>دي الإجابة الصحيحة يا اوزتي ❤️</h1>
